@@ -1,0 +1,28 @@
+{
+  "name": "survey-convertor",
+  "repository": "http://github.com/edina/survey-convertor",
+  "registry": "jspm",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "babel --out-file dist/build.js lib/convert.js && mocha test/test.js"
+  },
+  "main": "lib/index",
+  "jspm": {
+    "format": "es6",
+    "dependencies": {
+      "jquery": "github:components/jquery@^2.1.4"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.22",
+      "babel-runtime": "npm:babel-runtime@^5.8.20",
+      "core-js": "npm:core-js@^1.1.1"
+    }
+  },
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "cheerio": "^0.19.0",
+    "jspm": "^0.16.1",
+    "mocha": "^2.2.5",
+    "systemjs": "^0.19.6"
+  }
+}
