@@ -6,9 +6,16 @@
   "scripts": {
     "test": "npm run build-common-test && mocha test/test.js",
     "replaceJquery": "replace \"('jquery')\" \"'cheerio'\" test/build.js",
-    "build-common": "babel -i jquery --out-file test/build.js lib/convert.js --plugins  transform-es2015-modules-commonjs",
-    "build-common-test": "npm run build-common && npm run replaceJquery",
-    "build-amd": "babel -i jquery --out-file dist/amd/build.js lib/convert.js --plugins transform-es2015-modules-amd"
+    "build-common": "babel -i jquery --out-file dist/common/convert.common.js lib/convert.js --plugins  transform-es2015-modules-commonjs",
+    "build-common-test": "babel -i jquery --out-file test/build.js lib/convert.js --plugins  transform-es2015-modules-commonjs && npm run replaceJquery",
+    "build-amd": "babel -i jquery --out-file dist/amd/convert.amd.js lib/convert.js --plugins transform-es2015-modules-amd",
+    "lint": "jshint lib/**.js",
+    "uglify-common": "uglify dist/common/convert.common.js -o dist/convert.common.min.js",
+    "uglify-amd": "uglify dist/amd/convert.amd.js -o dist/convert.amd.min.js",
+    "uglify": "npm run uglify-common && npm run uglify-amd",
+    "release-it": "node_modules/release-it/bin/release.js",
+    "release": "npm run lint & npm run test & npm run copy & npm run uglify & npm run release-it",
+    "validate": "npm ls"
   },
   "main": "lib/index",
   "jspm": {
@@ -29,9 +36,16 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
     "browserify": "^12.0.1",
     "cheerio": "^0.19.0",
+    "jshint": "^2.8.0",
     "jspm": "^0.16.1",
     "mocha": "^2.2.5",
+    "precommit-hook": "^3.0.0",
+    "release-it": "^2.3.1",
     "replace": "^0.3.0",
     "systemjs": "^0.19.6"
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
