@@ -4,7 +4,11 @@
   "registry": "jspm",
   "version": "0.1.0",
   "scripts": {
-    "test": "babel --out-file dist/build.js lib/convert.js && mocha test/test.js"
+    "test": "npm run build-common-test && mocha test/test.js",
+    "replaceJquery": "replace \"('jquery')\" \"'cheerio'\" test/build.js",
+    "build-common": "babel -i jquery --out-file test/build.js lib/convert.js --plugins  transform-es2015-modules-commonjs",
+    "build-common-test": "npm run build-common && npm run replaceJquery",
+    "build-amd": "babel -i jquery --out-file dist/amd/build.js lib/convert.js --plugins transform-es2015-modules-amd"
   },
   "main": "lib/index",
   "jspm": {
@@ -19,10 +23,15 @@
     }
   },
   "devDependencies": {
-    "babel": "^5.8.21",
+    "babel": "^6.3.13",
+    "babel-cli": "^6.3.15",
+    "babel-plugin-transform-es2015-modules-amd": "^6.3.13",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.3.13",
+    "browserify": "^12.0.1",
     "cheerio": "^0.19.0",
     "jspm": "^0.16.1",
     "mocha": "^2.2.5",
+    "replace": "^0.3.0",
     "systemjs": "^0.19.6"
   }
 }

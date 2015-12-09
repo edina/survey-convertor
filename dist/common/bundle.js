@@ -1,8 +1,18 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
-import $ from 'jquery';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _jquery = require('jquery');
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 class Convertor {
-    constructor (){
+    constructor() {
         this.form = {};
     }
 
@@ -10,21 +20,21 @@ class Convertor {
      * go through the dom and find all the fieldcontains to get the equivalent
      * html and convert it to a json file
      */
-    getForm (html) {
-        var $html = $(html);
+    getForm(html) {
+        var $html = (0, _jquery2.default)(html);
         var c = this;
         this.form = {};
         this.form.title = $html.filter(".fieldcontain-general").find('input[name="label"]').val();
         var geoms = [];
-        $html.find('input[name="geometryType"]:checked').each(function(){
-            geoms.push($(this).val());
+        $html.find('input[name="geometryType"]:checked').each(function () {
+            geoms.push((0, _jquery2.default)(this).val());
         });
         this.form.geoms = geoms;
-        $html.filter(".fieldcontain").each(function(){
-            var $this = $(this);
+        $html.filter(".fieldcontain").each(function () {
+            var $this = (0, _jquery2.default)(this);
             var id = $this.attr("id");
             var type = $this.data("type");
-            if(id !== undefined){
+            if (id !== undefined) {
                 this.form[id] = c.fieldToJSON(id, type, $this);
             }
         });
@@ -38,7 +48,7 @@ class Convertor {
      * @param {Object} the html object of the fieldcontain-general
      * @returns {Object} the json object of html field
      */
-    fieldToJSON (id, type, html) {
+    fieldToJSON(id, type, html) {
         var field = {};
         var c = this;
         switch (type) {
@@ -72,16 +82,15 @@ class Convertor {
                 field["other"] = html.find('input[name="other"]').is(':checked');
                 var checkboxes = [];
 
-                html.find('input[name="'+id+'"]').each(function(event){
-                    var $img = $(this).closest(".form-inline").find("img");
-                    if($img.length > 0){
+                html.find('input[name="' + id + '"]').each(function (event) {
+                    var $img = (0, _jquery2.default)(this).closest(".form-inline").find("img");
+                    if ($img.length > 0) {
                         checkboxes.push([]);
-                        var n = checkboxes.length-1;
-                        checkboxes[n].push($(this).val());
+                        var n = checkboxes.length - 1;
+                        checkboxes[n].push((0, _jquery2.default)(this).val());
                         checkboxes[n].push(c.getFilenameFromURL($img.attr("src")));
-                    }
-                    else {
-                        checkboxes.push($(this).val());
+                    } else {
+                        checkboxes.push((0, _jquery2.default)(this).val());
                     }
                 });
                 field["checkboxes"] = checkboxes;
@@ -94,17 +103,16 @@ class Convertor {
                 var radios = [];
 
                 //go through each radio element
-                html.find('input[name="'+id+'"]').each(function(event){
-                    var $img = $(this).closest(".form-inline").find("img");
+                html.find('input[name="' + id + '"]').each(function (event) {
+                    var $img = (0, _jquery2.default)(this).closest(".form-inline").find("img");
                     //if it has images next to them then save the image src as well
-                    if($img.length > 0){
+                    if ($img.length > 0) {
                         radios.push([]);
-                        var n = radios.length-1;
-                        radios[n].push($(this).val());
+                        var n = radios.length - 1;
+                        radios[n].push((0, _jquery2.default)(this).val());
                         radios[n].push(c.getFilenameFromURL($img.attr("src")));
-                    }
-                    else {
-                        radios.push($(this).val());
+                    } else {
+                        radios.push((0, _jquery2.default)(this).val());
                     }
                 });
                 field["radios"] = radios;
@@ -114,22 +122,22 @@ class Convertor {
                 field["required"] = html.find('input[name="required"]').is(':checked');
                 field["persistent"] = html.find('input[name="persistent"]').is(':checked');
                 var options = [];
-                html.find('input[name="'+id+'"]').each(function(event){
-                    var $img = $(this).closest(".form-inline").find("img");
+                html.find('input[name="' + id + '"]').each(function (event) {
+                    var $img = (0, _jquery2.default)(this).closest(".form-inline").find("img");
                     //if it has images next to them then save the image src as well
-                    if($img.length > 0) {
+                    if ($img.length > 0) {
                         options.push([]);
-                        var n = options.length-1;
-                        options[n].push($(this).val());
+                        var n = options.length - 1;
+                        options[n].push((0, _jquery2.default)(this).val());
                         options[n].push(c.getFilenameFromURL($img.attr("src")));
-                    } else{
-                        options.push($(this).val());
+                    } else {
+                        options.push((0, _jquery2.default)(this).val());
                     }
                 });
                 field["options"] = options;
                 break;
             case 'dtree':
-                var $a =  html.find('a');
+                var $a = html.find('a');
                 field["label"] = html.find('input[name="label"]').val();
                 field["filename"] = $a.text();
                 break;
@@ -166,210 +174,156 @@ class Convertor {
      * convert JSON to html
      * @param form the html content of the form
      */
-    JSONtoHTML (form) {
-        if(form){
+    JSONtoHTML(form) {
+        if (form) {
             this.form = form;
         }
         var html = [];
         //add title
-        this.form.title = this.form.title.replace('"', '&quot;')
-        html.push('<form data-title=\"'+
-            this.form.title+'\" data-ajax=\"false\" novalidate>\n')
+        this.form.title = this.form.title.replace('"', '&quot;');
+        html.push('<form data-title=\"' + this.form.title + '\" data-ajax=\"false\" novalidate>\n');
 
         //add geometry
-        html.push('<div class="fieldcontain fieldcontain-geometryType"'+
-          ' id="fieldcontain-geometryType" data-cobweb-type="geometryType">\n');
-        html.push('<input type="hidden" data-record-geometry="'+
-            this.form.geoms.join(",")+'" value="'+this.form.geoms.join(",")+'">\n');
+        html.push('<div class="fieldcontain fieldcontain-geometryType"' + ' id="fieldcontain-geometryType" data-cobweb-type="geometryType">\n');
+        html.push('<input type="hidden" data-record-geometry="' + this.form.geoms.join(",") + '" value="' + this.form.geoms.join(",") + '">\n');
         html.push('</div>\n');
 
-        $.each(this.form, function(key, value){
+        _jquery2.default.each(this.form, function (key, value) {
             var splits = key.split("-");
             var type = splits[1];
             var n = splits[2];
 
             var required = "";
-            if(value.required) {
+            if (value.required) {
                 required = 'required="required"';
             }
             var persistent = "";
-            if(value.persistent) {
+            if (value.persistent) {
                 persistent = 'data-persistent="on"';
             }
             var visibility = "";
-            if(value.visibility) {
-                visibility = 'data-visibility="'
-                  +value.visibility.id.replace("fieldcontain-", "")+
-                  ' '+value.visibility.rule+' \''+value.visibility.answer+'\'"';
+            if (value.visibility) {
+                visibility = 'data-visibility="' + value.visibility.id.replace("fieldcontain-", "") + ' ' + value.visibility.rule + ' \'' + value.visibility.answer + '\'"';
             }
             switch (type) {
                 case 'text':
-                    html.push('<div class="fieldcontain" id="'+key+
-                      '" data-fieldtrip-type="'+type+'" '+persistent+' '
-                      +visibility+'>\n');
-                    html.push('<label for="form-'+type+'-'+n+'">'+
-                        value.label+'</label>\n');
-                    html.push('<input name="form-'+type+'-'+n+'" id="form-'+type+'-'+n+
-                              '" type="text" '+required+' placeholder="'+value.placeholder+
-                              '" maxlength="'+value["max-chars"]+'" value="'+value.prefix+'">\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<label for="form-' + type + '-' + n + '">' + value.label + '</label>\n');
+                    html.push('<input name="form-' + type + '-' + n + '" id="form-' + type + '-' + n + '" type="text" ' + required + ' placeholder="' + value.placeholder + '" maxlength="' + value["max-chars"] + '" value="' + value.prefix + '">\n');
                     html.push('</div>\n');
                     break;
                 case 'textarea':
-                    html.push('<div class="fieldcontain" id="'+key+
-                        '" data-fieldtrip-type="'+type+'" '+persistent+' '+
-                        visibility+'>\n');
-                    html.push('<label for="form-'+type+'-'+n+'">'+
-                        value.label+'</label>\n');
-                    html.push('<textarea name="form-'+type+'-'+n+'" id="form-'+type+'-'+n+
-                              '" '+required+' placeholder="'+value.placeholder+
-                              '"></textarea>\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<label for="form-' + type + '-' + n + '">' + value.label + '</label>\n');
+                    html.push('<textarea name="form-' + type + '-' + n + '" id="form-' + type + '-' + n + '" ' + required + ' placeholder="' + value.placeholder + '"></textarea>\n');
                     html.push('</div>\n');
                     break;
                 case 'range':
-                    html.push('<div class="fieldcontain" id="'+key+
-                        '" data-fieldtrip-type="'+type+'" '+persistent+' '+
-                        visibility+'>\n');
-                    html.push('<label for="form-'+type+'-'+n+'">'+
-                        value.label+'</label>\n');
-                    html.push('<input name="form-'+type+'-'+n+'" id="form-'+type+'-'+n+
-                              '" type="range" '+required+' placeholder="'+value.placeholder+
-                              '" step="'+value.step+'" min="'+value.min+'" max="'+value.max+'">\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<label for="form-' + type + '-' + n + '">' + value.label + '</label>\n');
+                    html.push('<input name="form-' + type + '-' + n + '" id="form-' + type + '-' + n + '" type="range" ' + required + ' placeholder="' + value.placeholder + '" step="' + value.step + '" min="' + value.min + '" max="' + value.max + '">\n');
                     html.push('</div>\n');
                     break;
                 case 'checkbox':
-                    html.push('<div class="fieldcontain" id="'+key+
-                        '" data-fieldtrip-type="'+type+'" '+persistent+' '+
-                        visibility+'>\n');
-                    html.push('<fieldset>\n<legend>'+value.label+'</legend>\n');
-                    $.each(value.checkboxes, function(k, v){
-                        if(typeof(v) === "object"){
-                            html.push('<label for="'+key+'-'+k+'">\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<fieldset>\n<legend>' + value.label + '</legend>\n');
+                    _jquery2.default.each(value.checkboxes, function (k, v) {
+                        if (typeof v === "object") {
+                            html.push('<label for="' + key + '-' + k + '">\n');
                             html.push('<div class="ui-grid-a grids">\n');
-                            html.push('<div class="ui-block-a"><p>'+v[0]+'</p></div>\n');
-                            html.push('<div class="ui-block-b"><img src="'+
-                                utils.getFilenameFromURL(v[1])+'"></div>\n');
+                            html.push('<div class="ui-block-a"><p>' + v[0] + '</p></div>\n');
+                            html.push('<div class="ui-block-b"><img src="' + utils.getFilenameFromURL(v[1]) + '"></div>\n');
                             html.push('</label>');
-                            html.push('<input name="'+key+'-'+k+'" id="'+key+
-                                '-'+k+'" value="'+v[0]+'" type="'+type+'" '+
-                                required+'>\n');
-                        }
-                        else {
-                            html.push('<label for="'+key+'-'+k+'">'+v+'</label>\n');
-                            html.push('<input name="'+key+'-'+k+'" id="'+
-                                key+'-'+k+'" value="'+v+'" type="'+type+'" '+
-                                required+'>\n');
+                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v[0] + '" type="' + type + '" ' + required + '>\n');
+                        } else {
+                            html.push('<label for="' + key + '-' + k + '">' + v + '</label>\n');
+                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v + '" type="' + type + '" ' + required + '>\n');
                         }
                     });
                     if (value.other === true) {
-                        html.push('<label for="'+key+'-'+value.checkboxes.length+
-                            '" class="other">' +i18n.t('checkbox.other')+
-                            '</label>\n');
-                        html.push('<input name="'+key+'" id="'+key+'-'+
-                            value.checkboxes.length+'" value="other"'+
-                            ' class="other" type="'+type+'" '+required+'>\n');
+                        html.push('<label for="' + key + '-' + value.checkboxes.length + '" class="other">' + i18n.t('checkbox.other') + '</label>\n');
+                        html.push('<input name="' + key + '" id="' + key + '-' + value.checkboxes.length + '" value="other"' + ' class="other" type="' + type + '" ' + required + '>\n');
                     }
                     html.push('</fieldset>\n</div>\n');
                     break;
                 case 'radio':
-                    html.push('<div class="fieldcontain" id="'+
-                        key+'" data-fieldtrip-type="'+type+'" '+persistent+' '+
-                        visibility+'>\n');
-                    html.push('<fieldset>\n<legend>'+value.label+'</legend>\n');
-                    $.each(value.radios, function(k, v){
-                        if(typeof(v) === "object"){
-                            html.push('<label for="'+key+'-'+k+'">\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<fieldset>\n<legend>' + value.label + '</legend>\n');
+                    _jquery2.default.each(value.radios, function (k, v) {
+                        if (typeof v === "object") {
+                            html.push('<label for="' + key + '-' + k + '">\n');
                             html.push('<div class="ui-grid-a grids">\n');
-                            html.push('<div class="ui-block-a"><p>'+v[0]+'</p></div>\n');
-                            html.push('<div class="ui-block-b"><img src="'+
-                                utils.getFilenameFromURL(v[1])+'"></div>\n');
+                            html.push('<div class="ui-block-a"><p>' + v[0] + '</p></div>\n');
+                            html.push('<div class="ui-block-b"><img src="' + utils.getFilenameFromURL(v[1]) + '"></div>\n');
                             html.push('</label>');
-                            html.push('<input name="'+key+'" id="'+key+'-'+k+
-                                '" value="'+v[0]+'" type="'+
-                                type+'" '+required+'>\n');
-                        }
-                        else {
-                            html.push('<label for="'+key+'-'+k+'">'+v+'</label>\n');
-                            html.push('<input name="'+key+'" id="'+key+'-'+
-                                k+'" value="'+v+'" type="'+type+'" '+required+'>\n');
+                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v[0] + '" type="' + type + '" ' + required + '>\n');
+                        } else {
+                            html.push('<label for="' + key + '-' + k + '">' + v + '</label>\n');
+                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v + '" type="' + type + '" ' + required + '>\n');
                         }
                     });
                     if (value.other === true) {
-                        html.push('<label for="'+key+'-'+
-                            value.radios.length+'" class="other">' +
-                            i18n.t('radio.other')  + '</label>\n');
-                        html.push('<input name="'+key+'" id="'+key+'-'+
-                            value.radios.length+'" value="other" class="other" type="'+
-                            type+'" '+required+'>\n');
+                        html.push('<label for="' + key + '-' + value.radios.length + '" class="other">' + i18n.t('radio.other') + '</label>\n');
+                        html.push('<input name="' + key + '" id="' + key + '-' + value.radios.length + '" value="other" class="other" type="' + type + '" ' + required + '>\n');
                     }
                     html.push('</fieldset>\n</div>\n');
                     break;
                 case 'select':
-                    html.push('<div class="fieldcontain" id="'+key+'"'+
-                        ' data-fieldtrip-type="'+type+'" '+persistent+' '
-                        +visibility+'>\n');
-                    html.push('<fieldset>\n<legend>'+value.label+'</legend>\n');
-                    if(required !== ""){
-                        html.push('<select name="'+key+'" required="required">\n');
+                    html.push('<div class="fieldcontain" id="' + key + '"' + ' data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
+                    html.push('<fieldset>\n<legend>' + value.label + '</legend>\n');
+                    if (required !== "") {
+                        html.push('<select name="' + key + '" required="required">\n');
                         html.push('<option value=""></option>\n');
+                    } else {
+                        html.push('<select id="' + key + '">\n');
                     }
-                    else{
-                        html.push('<select id="'+key+'">\n');
-                    }
-                    $.each(value.options, function(k, v){
-                        html.push('<option value="'+v+'">'+v+'</option>\n');
+                    _jquery2.default.each(value.options, function (k, v) {
+                        html.push('<option value="' + v + '">' + v + '</option>\n');
                     });
                     html.push('</select>\n</fieldset>\n</div>\n');
                     break;
                 case 'dtree':
-                    html.push('<div class="fieldcontain" id="'+
-                        key+'" data-fieldtrip-type="'+type+'" '+visibility+'>\n');
-                    html.push('<fieldset>\n<label for="fieldcontain-'+
-                        type+'-'+n+'">'+value.label+'</label>\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + visibility + '>\n');
+                    html.push('<fieldset>\n<label for="fieldcontain-' + type + '-' + n + '">' + value.label + '</label>\n');
                     html.push('<div class="button-wrapper button-dtree"></div>\n');
                     html.push('</fieldset>\n');
-                    html.push('<input type="hidden" data-dtree="'+
-                        value.filename+'" value="'+value.filename+'">\n');
+                    html.push('<input type="hidden" data-dtree="' + value.filename + '" value="' + value.filename + '">\n');
                     html.push('</div>\n');
                     break;
                 case 'image':
                     var cl = "camera";
-                    if(value["multi-image"] === true){
+                    if (value["multi-image"] === true) {
                         type = 'multiimage';
                     }
-                    if(value.los === true){
+                    if (value.los === true) {
                         cl = "camera-va";
                     }
-                    html.push('<div class="fieldcontain" id="fieldcontain-'+
-                        type+'-1" data-fieldtrip-type="'+cl+'" '+visibility+'>\n');
-                    html.push('<div class="button-wrapper button-'+cl+'">\n');
-                    html.push('<input name="form-image-1" id="form-image-1"'+
-                        ' type="file" accept="image/png" capture="'+cl+'" '+
-                        required+' class="'+cl+'">\n')
-                    html.push('<label for="form-image-1">'+value.label+'</label>\n');
+                    html.push('<div class="fieldcontain" id="fieldcontain-' + type + '-1" data-fieldtrip-type="' + cl + '" ' + visibility + '>\n');
+                    html.push('<div class="button-wrapper button-' + cl + '">\n');
+                    html.push('<input name="form-image-1" id="form-image-1"' + ' type="file" accept="image/png" capture="' + cl + '" ' + required + ' class="' + cl + '">\n');
+                    html.push('<label for="form-image-1">' + value.label + '</label>\n');
                     html.push('<div style="display:none;" id="blur-threshold" value="' + value.blur + '"></div>');
                     html.push('</div>\n</div>\n');
                     break;
                 case 'audio':
-                    html.push('<div class="fieldcontain" id="fieldcontain-audio-1" data-fieldtrip-type="microphone" '+visibility+'>\n');
+                    html.push('<div class="fieldcontain" id="fieldcontain-audio-1" data-fieldtrip-type="microphone" ' + visibility + '>\n');
                     html.push('<div class="button-wrapper button-microphone">\n');
-                    html.push('<input name="form-audio-1" id="form-audio-1" type="file" accept="audio/*" capture="microphone" '+required+' class="microphone">\n');
-                    html.push('<label for="form-audio-1">'+value.label+'</label>\n');
+                    html.push('<input name="form-audio-1" id="form-audio-1" type="file" accept="audio/*" capture="microphone" ' + required + ' class="microphone">\n');
+                    html.push('<label for="form-audio-1">' + value.label + '</label>\n');
                     html.push('</div>\n</div>\n');
                     break;
                 case 'gps':
 
                     break;
                 case 'warning':
-                    html.push('<div class="fieldcontain" id="'+key+'" data-fieldtrip-type="'+type+'">\n');
-                    html.push('<label for="form-'+type+'-'+n+'">'+value.label+'</label>\n');
-                    html.push('<textarea name="form-'+type+'-'+n+'" id="form-'+type+'-'+n+
-                              '" '+required+' placeholder="'+value.placeholder+
-                              '"></textarea>\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '">\n');
+                    html.push('<label for="form-' + type + '-' + n + '">' + value.label + '</label>\n');
+                    html.push('<textarea name="form-' + type + '-' + n + '" id="form-' + type + '-' + n + '" ' + required + ' placeholder="' + value.placeholder + '"></textarea>\n');
                     html.push('</div>\n');
                     break;
                 case 'section':
-                    html.push('<div class="fieldcontain" id="'+key+'" data-fieldtrip-type="'+type+'">\n');
-                    html.push('<h3>'+value.label+'</h3>\n');
+                    html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '">\n');
+                    html.push('<h3>' + value.label + '</h3>\n');
                     html.push('</div>\n');
                     break;
             }
@@ -391,17 +345,17 @@ class Convertor {
      * @param html the html code of the form
      * @param title the title of the form that comes from the url
      */
-    HTMLtoJSON (html, title) {
-        var $form = $(html);
+    HTMLtoJSON(html, title) {
+        var $form = (0, _jquery2.default)(html);
         var form = {};
         form.title = title;
         form.geoms = ["point"];
         var geomValues = $form.data("record-geometry");
-        if(geomValues){
+        if (geomValues) {
             form.geoms = $form.data("record-geometry").split(",");
         }
-        $form.find(".fieldcontain").each(function(){
-            var $this = $(this);
+        $form.find(".fieldcontain").each(function () {
+            var $this = (0, _jquery2.default)(this);
             var id = $this.attr("id");
             var type = $this.attr("id").split("-")[1];
             form[id] = {};
@@ -437,19 +391,18 @@ class Convertor {
                     form[id]["persistent"] = $this.data("persistent");
                     var checkboxes = [];
                     var required;
-                    $this.find('input[type="checkbox"]').each(function(){
+                    $this.find('input[type="checkbox"]').each(function () {
                         var ch;
-                        var $img = $(this).prev().find('img');
-                        if($img.is('img')) {
+                        var $img = (0, _jquery2.default)(this).prev().find('img');
+                        if ($img.is('img')) {
                             ch = [];
-                            ch.push($(this).val());
+                            ch.push((0, _jquery2.default)(this).val());
                             ch.push(pcapi.buildFSUrl('editors', $img.attr("src")));
-                        }
-                        else {
-                            ch = $(this).val();
+                        } else {
+                            ch = (0, _jquery2.default)(this).val();
                         }
                         checkboxes.push(ch);
-                        required = $(this).attr("required");
+                        required = (0, _jquery2.default)(this).attr("required");
                     });
                     form[id]["required"] = required;
                     form[id]["checkboxes"] = checkboxes;
@@ -459,19 +412,18 @@ class Convertor {
                     form[id]["persistent"] = $this.data("persistent");
                     var radios = [];
                     var required;
-                    $this.find('input[name="'+id+'"]').each(function(event){
+                    $this.find('input[name="' + id + '"]').each(function (event) {
                         var rd;
-                        var $img = $(this).prev().find('img');
-                        if($img.is('img')) {
+                        var $img = (0, _jquery2.default)(this).prev().find('img');
+                        if ($img.is('img')) {
                             rd = [];
-                            rd.push($(this).val());
+                            rd.push((0, _jquery2.default)(this).val());
                             rd.push(pcapi.buildFSUrl('editors', $img.attr("src")));
-                        }
-                        else {
-                            rd = $(this).val();
+                        } else {
+                            rd = (0, _jquery2.default)(this).val();
                         }
                         radios.push(rd);
-                        required = $(this).attr("required");
+                        required = (0, _jquery2.default)(this).attr("required");
                     });
                     form[id]["required"] = required;
                     form[id]["radios"] = radios;
@@ -480,8 +432,8 @@ class Convertor {
                     form[id]["label"] = $this.find('legend').text();
                     form[id]["required"] = $this.find('select').prop("required");
                     var options = [];
-                    $this.find('option').each(function(event){
-                        options.push($(this).val());
+                    $this.find('option').each(function (event) {
+                        options.push((0, _jquery2.default)(this).val());
                     });
                     form[id]["options"] = options;
                     break;
@@ -494,14 +446,14 @@ class Convertor {
                     var $input = $this.find('input');
                     form[id]["required"] = $input.prop("required");
                     form[id]["multi-image"] = false;
-                    form[id]["los"] = ($input.attr('class') === 'camera-va');
+                    form[id]["los"] = $input.attr('class') === 'camera-va';
                     break;
                 case 'multiimage':
                     form[id]["label"] = $this.find('label').text();
                     var $input = $this.find('input');
                     form[id]["required"] = $input.prop("required");
                     form[id]["multi-image"] = true;
-                    form[id]["los"] = ($input.attr('class') === 'camera-va');
+                    form[id]["los"] = $input.attr('class') === 'camera-va';
                     break;
                 case 'audio':
                     form[id]["label"] = $this.find('label').text();
@@ -535,8 +487,12 @@ class Convertor {
     * @returns {String} filename
     */
     getFilenameFromURL(path) {
-        return path.substring(path.length, path.lastIndexOf('/')+1);
-    };
+        return path.substring(path.length, path.lastIndexOf('/') + 1);
+    }
 }
 
-export default Convertor;
+exports.default = Convertor;
+
+},{"jquery":2}],2:[function(require,module,exports){
+
+},{}]},{},[1]);
