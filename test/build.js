@@ -22,22 +22,21 @@ class Convertor {
     getForm(html) {
         var $html = (0, _jquery2.default)(html);
         var c = this;
-        this.form = {};
-        this.form.title = $html.filter(".fieldcontain-general").find('input[name="label"]').val();
-        var geoms = [];
+        var form = {};
+        form.title = $html.filter(".fieldcontain-general").find('input[name="label"]').val();
+        form.geoms = [];
         $html.find('input[name="geometryType"]:checked').each(function () {
-            geoms.push((0, _jquery2.default)(this).val());
+            form.geoms.push((0, _jquery2.default)(this).val());
         });
-        this.form.geoms = geoms;
         $html.filter(".fieldcontain").each(function () {
             var $this = (0, _jquery2.default)(this);
             var id = $this.attr("id");
             var type = $this.data("type");
             if (id !== undefined) {
-                this.form[id] = c.fieldToJSON(id, type, $this);
+                form[id] = c.fieldToJSON(id, type, $this);
             }
         });
-        return this.form;
+        return form;
     }
 
     /**
