@@ -3,6 +3,8 @@
   "repository": "http://github.com/edina/survey-convertor",
   "registry": "jspm",
   "version": "0.1.0",
+  "author": "panterz",
+  "licence": "BSD-3",
   "scripts": {
     "test": "npm run build-common-test && mocha test/test.js",
     "replaceJquery": "replace \"('jquery')\" \"'cheerio'\" test/build.js",
@@ -17,8 +19,14 @@
     "release": "npm run lint & npm run test & npm run copy & npm run uglify & npm run release-it",
     "validate": "npm ls"
   },
-  "main": "lib/index",
+  "main": "lib/convert",
   "jspm": {
+    "shim": {
+      "js/bootstrap": {
+        "deps": "jquery",
+        "exports": "$"
+      }
+    },
     "format": "es6",
     "dependencies": {
       "jquery": "github:components/jquery@^2.1.4"
