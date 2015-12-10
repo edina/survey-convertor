@@ -3,3 +3,18 @@
 survey-convertor
 ===========
 ES6 lib for converting survey from html to json format and vice versa. 
+
+
+### Installation
+
+```
+npm install -g jspm
+npm install
+jspm install
+```
+
+### Tests
+
+```
+npm run test
+```
