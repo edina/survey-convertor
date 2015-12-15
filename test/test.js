@@ -343,17 +343,19 @@ describe('surveyConvertor#fieldToJSON', function() {
     });
 });
 
-/*describe('surveyConvertor#HTMLtoJSON', function() {
+describe('surveyConvertor#HTMLtoJSON', function() {
     var convertor;
     beforeEach(function() {
-        convertor = new SurveyConvertor();
+        convertor = new Convertor();
     });
 
-    var data = fs.readFileSync('test/test.edtr').toString('utf8');
+    var editor = fs.readFileSync('test/test.edtr').toString('utf8');
+    var expected = fs.readFileSync('test/test.json').toString('utf8');
 
-    it('checkConversion', function(){
-        console.log(convertor.HTMLtoJSON(data, "test"));
+    it('check .edtr to JSON conversion', function(){
+        assert.deepEqual(
+            convertor.HTMLtoJSON(editor, "test"), JSON.parse(expected));
     });
 
 
-});*/
+});
