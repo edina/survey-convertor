@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0139)http://dlib-terzis.ucs.ed.ac.uk:8150/1.3/pcapi/editors/local/2338e388-f34e-25d9-945c-54cffd9c46c2/9de51d0c-4aee-41f3-b555-9bed58a9c4fa.edtr -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><form data-title="5210 ‘’Arborescent matorral with Juniperus spp.’’ – all clusters" data-ajax="false" novalidate="">
+<form data-title="5210 ‘’Arborescent matorral with Juniperus spp.’’ – all clusters" data-ajax="false" novalidate>
 <div class="fieldcontain fieldcontain-geometryType" id="fieldcontain-geometryType" data-cobweb-type="geometryType">
 <input type="hidden" data-record-geometry="point" value="point">
 </div>
@@ -265,4 +263,4 @@
 <input type="button" name="cancel" value="Cancel">
 </div>
 </div>
-</form></body></html>
+</form>
