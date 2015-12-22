@@ -8,6 +8,9 @@
   "scripts": {
     "test": "npm run build-common-test && mocha --require source-map-support/register test/test.js",
     "replaceJquery": "replace \"('jquery')\" \"'cheerio'\" test/build.js",
+    "build-es6": "npm run build-es6-min && npm run build-es6-no-min",
+    "build-es6-no-min": "babel -i jquery --out-file dist/es6/convert.es6.js lib/convert.js --source-maps true",
+    "build-es6-min": "babel -i jquery --out-file dist/es6/convert.es6.js lib/convert.js --source-maps true --minified",
     "build-common": "babel -i jquery --out-file dist/common/convert.common.js lib/convert.js --plugins  transform-es2015-modules-commonjs",
     "build-common-test": "babel -i jquery --out-file test/build.js lib/convert.js --source-maps true --plugins  transform-es2015-modules-commonjs && npm run replaceJquery",
     "build-amd": "babel -i jquery --out-file dist/amd/convert.amd.js lib/convert.js --plugins transform-es2015-modules-amd",
@@ -21,12 +24,6 @@
   },
   "main": "lib/convert",
   "jspm": {
-    "shim": {
-      "js/bootstrap": {
-        "deps": "jquery",
-        "exports": "$"
-      }
-    },
     "format": "es6",
     "dependencies": {
       "jquery": "github:components/jquery@^2.1.4"

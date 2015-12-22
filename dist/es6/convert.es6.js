@@ -1,14 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _jquery = require('cheerio');
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+import $ from 'jquery';
 
 class Convertor {
     constructor() {
@@ -21,7 +11,7 @@ class Convertor {
      * @returns a text with the characters escaped
      */
     encodeEntities(text) {
-        return (0, _jquery2.default)('<div />').text(text).html();
+        return $('<div />').text(text).html();
     }
 
     /**
@@ -205,6 +195,6 @@ class Convertor {
     }
 }
 
-exports.default = Convertor;
+export default Convertor;
 
-//# sourceMappingURL=build.js.map
+//# sourceMappingURL=convert.es6.js.map
