@@ -61,7 +61,7 @@ class Convertor {
             }
             var visibility = "";
             if (properties.visibility) {
-                visibility = 'data-visibility="' + properties.visibility.id.replace("fieldcontain-", "") + ' ' + properties.visibility.rule + ' \'' + properties.visibility.answer + '\'"';
+                visibility = 'data-visibility="' + properties.visibility.id.replace("fieldcontain-", "") + ' ' + properties.visibility.operator + ' \'' + properties.visibility.answer + '\'"';
             }
 
             value.label = self.encodeEntities(value.label);
