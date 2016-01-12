@@ -60,7 +60,7 @@ class Convertor {
                 persistent = 'data-persistent="on"';
             }
             var visibility = "";
-            if (value.visibility) {
+            if (properties.visibility) {
                 visibility = 'data-visibility="' + value.visibility.id.replace("fieldcontain-", "") + ' ' + value.visibility.rule + ' \'' + value.visibility.answer + '\'"';
             }
 
