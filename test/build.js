@@ -88,16 +88,16 @@ class Convertor {
                     html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
                     html.push('<fieldset>\n<legend>' + value.label + '</legend>\n');
                     properties.options.forEach(function (v, k) {
-                        if (typeof v === "object") {
+                        if ("image" in v) {
                             html.push('<label for="' + key + '-' + k + '">\n');
                             html.push('<div class="ui-grid-a grids">\n');
-                            html.push('<div class="ui-block-a"><p>' + v[0] + '</p></div>\n');
-                            html.push('<div class="ui-block-b"><img src="' + utils.getFilenameFromURL(v[1]) + '"></div>\n');
+                            html.push('<div class="ui-block-a"><p>' + v.value + '</p></div>\n');
+                            html.push('<div class="ui-block-b"><img src="' + self.getFilenameFromURL(v.image.src) + '"></div>\n');
                             html.push('</label>');
-                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v[0] + '" type="' + type + '" ' + required + '>\n');
+                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v.value + '" type="' + type + '" ' + required + '>\n');
                         } else {
-                            html.push('<label for="' + key + '-' + k + '">' + v + '</label>\n');
-                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v + '" type="' + type + '" ' + required + '>\n');
+                            html.push('<label for="' + key + '-' + k + '">' + v.value + '</label>\n');
+                            html.push('<input name="' + key + '-' + k + '" id="' + key + '-' + k + '" value="' + v.value + '" type="' + type + '" ' + required + '>\n');
                         }
                     });
                     if (value.other === true) {
@@ -110,16 +110,16 @@ class Convertor {
                     html.push('<div class="fieldcontain" id="' + key + '" data-fieldtrip-type="' + type + '" ' + persistent + ' ' + visibility + '>\n');
                     html.push('<fieldset>\n<legend>' + value.label + '</legend>\n');
                     properties.options.forEach(function (v, k) {
-                        if (typeof v === "object") {
+                        if ("image" in v) {
                             html.push('<label for="' + key + '-' + k + '">\n');
                             html.push('<div class="ui-grid-a grids">\n');
-                            html.push('<div class="ui-block-a"><p>' + v[0] + '</p></div>\n');
-                            html.push('<div class="ui-block-b"><img src="' + utils.getFilenameFromURL(v[1]) + '"></div>\n');
+                            html.push('<div class="ui-block-a"><p>' + v.value + '</p></div>\n');
+                            html.push('<div class="ui-block-b"><img src="' + self.getFilenameFromURL(v.image.src) + '"></div>\n');
                             html.push('</label>');
-                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v[0] + '" type="' + type + '" ' + required + '>\n');
+                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v.value + '" type="' + type + '" ' + required + '>\n');
                         } else {
-                            html.push('<label for="' + key + '-' + k + '">' + v + '</label>\n');
-                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v + '" type="' + type + '" ' + required + '>\n');
+                            html.push('<label for="' + key + '-' + k + '">' + v.value + '</label>\n');
+                            html.push('<input name="' + key + '" id="' + key + '-' + k + '" value="' + v.value + '" type="' + type + '" ' + required + '>\n');
                         }
                     });
                     if (value.other === true) {
@@ -202,6 +202,10 @@ class Convertor {
         html.push('</form>');
 
         return html;
+    }
+
+    getFilenameFromURL(path) {
+        return path.substring(path.length, path.lastIndexOf('/') + 1);
     }
 }
 
