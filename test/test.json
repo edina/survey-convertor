@@ -14,7 +14,7 @@
         "placeholder": "",
         "max-chars": "10"
       },
-      "id": "fieldcontain-text-1"
+      "id": "text-1"
     },
     {
       "label": "Site Code",
@@ -26,7 +26,7 @@
         "placeholder": "",
         "max-chars": "10"
       },
-      "id": "fieldcontain-text-2"
+      "id": "text-2"
     },
     {
       "label": "Matriculation number",
@@ -38,7 +38,7 @@
         "placeholder": "Enter your matriculation number",
         "max-chars": "524288"
       },
-      "id": "fieldcontain-text-3"
+      "id": "text-3"
     },
     {
       "label": "Existing relevé nr",
@@ -50,7 +50,7 @@
         "placeholder": "",
         "max-chars": "10"
       },
-      "id": "fieldcontain-text-4"
+      "id": "text-4"
     },
     {
       "label": "Locality",
@@ -62,7 +62,7 @@
         "placeholder": "",
         "max-chars": "10"
       },
-      "id": "fieldcontain-text-5"
+      "id": "text-5"
     },
     {
       "label": "Plot size (m^2)",
@@ -74,7 +74,7 @@
         "min": "0",
         "max": "1000"
       },
-      "id": "fieldcontain-range-1"
+      "id": "range-1"
     },
     {
       "label": "Area assessed (m^2)",
@@ -86,7 +86,7 @@
         "min": "0",
         "max": "10000"
       },
-      "id": "fieldcontain-range-2"
+      "id": "range-2"
     },
     {
       "label": "Relief",
@@ -102,7 +102,7 @@
           {"value": "Ravine"}
         ]
       },
-      "id": "fieldcontain-radio-1"
+      "id": "radio-1"
     },
     {
       "label": "Geological substratum",
@@ -114,7 +114,7 @@
         "placeholder": "",
         "max-chars": "20"
       },
-      "id": "fieldcontain-text-6"
+      "id": "text-6"
     },
     {
       "label": "Soil type",
@@ -128,7 +128,7 @@
           {"value": "Loam"}
         ]
       },
-      "id": "fieldcontain-radio-2"
+      "id": "radio-2"
     },
     {
       "label": "Adjacent vegetation",
@@ -140,7 +140,7 @@
         "placeholder": "(habitat) type(s)",
         "max-chars": "50"
       },
-      "id": "fieldcontain-text-7"
+      "id": "text-7"
     },
     {
       "label": "Substratum with significant disturbances (e.g. erosion, trampling)",
@@ -153,7 +153,7 @@
           {"value": "No"}
         ]
       },
-      "id": "fieldcontain-radio-3"
+      "id": "radio-3"
     },
     {
       "label": "Invasive/Ruderal spe",
@@ -165,7 +165,7 @@
         "placeholder": "",
         "max-chars": "30"
       },
-      "id": "fieldcontain-text-8"
+      "id": "text-8"
     },
     {
       "label": "Other",
@@ -177,7 +177,7 @@
         "placeholder": "",
         "max-chars": "10"
       },
-      "id": "fieldcontain-text-9"
+      "id": "text-9"
     },
     {
       "label": "Boulders (>20 cm) - Cover (%)",
@@ -189,7 +189,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-3"
+      "id": "range-3"
     },
     {
       "label": "Stones (2-20 cm) - Cover (%)",
@@ -201,7 +201,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-4"
+      "id": "range-4"
     },
     {
       "label": "Gravel (2mm-2 cm) - Cover (%)",
@@ -213,7 +213,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-5"
+      "id": "range-5"
     },
     {
       "label": "Fine soil - Cover (%)",
@@ -225,7 +225,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-6"
+      "id": "range-6"
     },
     {
       "label": "Litter - Cover (%)",
@@ -237,7 +237,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-7"
+      "id": "range-7"
     },
     {
       "label": "Moss - Cover (%)",
@@ -249,7 +249,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-8"
+      "id": "range-8"
     },
     {
       "label": "Tree (>2m) - Cover (%)",
@@ -261,7 +261,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-9"
+      "id": "range-9"
     },
     {
       "label": "Tree (>2m) - Height (m)",
@@ -273,7 +273,7 @@
         "min": "0",
         "max": "40"
       },
-      "id": "fieldcontain-range-10"
+      "id": "range-10"
     },
     {
       "label": "Shrub (0.5-2m) - Cover (%)",
@@ -285,7 +285,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-11"
+      "id": "range-11"
     },
     {
       "label": "Shrub (0.5-2m) - Height (m)",
@@ -297,7 +297,7 @@
         "min": "0.5",
         "max": "2"
       },
-      "id": "fieldcontain-range-12"
+      "id": "range-12"
     },
     {
       "label": "Herb (<0.5m) - Cover (%)",
@@ -309,7 +309,7 @@
         "min": "0",
         "max": "100"
       },
-      "id": "fieldcontain-range-13"
+      "id": "range-13"
     },
     {
       "label": "Herb (<0.5m) - Height (m)",
@@ -321,7 +321,7 @@
         "min": "0",
         "max": "0.5"
       },
-      "id": "fieldcontain-range-14"
+      "id": "range-14"
     },
     {
       "label": "Specific Structure and Functions [with Juniperus macrocarpa (5211)]",
@@ -339,7 +339,7 @@
           {"value": "Presence of juniper seedlings"}
         ]
       },
-      "id": "fieldcontain-checkbox-1"
+      "id": "checkbox-1"
     },
     {
       "label": "Specific Structure and Functions [with Juniperus phoenicea (5212)]",
@@ -359,7 +359,7 @@
           {"value": "Presence of juniper seedlings"}
         ]
       },
-      "id": "fieldcontain-checkbox-2"
+      "id": "checkbox-2"
     },
     {
       "label": "Specific Structure and Functions [with Juniperus excelsa – J. foetidissima (5213)]",
@@ -375,7 +375,7 @@
           {"value": "Presence of juniper seedlings"}
         ]
       },
-      "id": "fieldcontain-checkbox-3"
+      "id": "checkbox-3"
     },
     {
       "label": "Specific Structure and Functions [with Juniperus communis (ex 5130)]",
@@ -393,7 +393,7 @@
           {"value": "Absence of indications of significant/important erosion (e.g. crevasse-like erosion)"}
         ]
       },
-      "id": "fieldcontain-checkbox-4"
+      "id": "checkbox-4"
     },
     {
       "label": "Future Status",
@@ -408,7 +408,7 @@
           {"value": "XX: Not able to asses fucheckboxture conservation status in > 50% of the studied locality"}
         ]
       },
-      "id": "fieldcontain-radio-5"
+      "id": "radio-5"
     },
     {
       "label": "Restoration possibility",
@@ -423,7 +423,7 @@
           {"value": "unable to assess"}
         ]
       },
-      "id": "fieldcontain-radio-6"
+      "id": "radio-6"
     },
     {
       "label": "Positive impacts",
@@ -433,7 +433,7 @@
       "properties": {
         "placeholder": "(management actions, policy changes etc). Description and importance."
       },
-      "id": "fieldcontain-textarea-1"
+      "id": "textarea-1"
     },
     {
       "label": "Pressures and threats",
@@ -443,7 +443,7 @@
       "properties": {
         "filename": "9de51d0c-4aee-41f3-b555-9bed58a9c4fa-1.json"
       },
-      "id": "fieldcontain-dtree-1"
+      "id": "dtree-1"
     },
     {
       "label": "Typical species",
@@ -453,18 +453,18 @@
       "properties": {
         "filename": "9de51d0c-4aee-41f3-b555-9bed58a9c4fa-2.json"
       },
-      "id": "fieldcontain-dtree-2"
+      "id": "dtree-2"
     },
     {
       "label": "Take a photo",
-      "type": "multiimage",
+      "type": "image",
       "required": true,
       "persistent": false,
       "properties": {
         "los": false,
         "multi-image": true
       },
-      "id": "fieldcontain-multiimage-1"
+      "id": "image-1"
     }
   ]
 }
